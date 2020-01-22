@@ -126,7 +126,7 @@ async function contributify (targetDir: string) {
   const repo = await Repo.create(targetDir, new Config(tomlConfig))
 
   let current = moment('20180101', 'YYYYMMDD')
-  const end = moment('20191231', 'YYYYMMDD')
+  const end = moment('20201231', 'YYYYMMDD')
 
   while (current.isSameOrBefore(end)) {
     await repo.writeCommits(current)
