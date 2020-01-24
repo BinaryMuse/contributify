@@ -1,0 +1,41 @@
+{
+  "settings": {
+    "tzOffset": -7,
+    "skipChance": 0.1,
+    "weekendSkipChance": 0.6,
+    "author": {
+      "name": "Michelle Tilley",
+      "email": "michelle@michelletilley.net"
+    },
+    "range": {
+      "normal": {
+        "min": 1,
+        "max": 50
+      },
+      "weekend": {
+        "min": 1,
+        "max": 50
+      }
+    }
+  },
+  "overrides": [
+    {
+      "start": "20190220",
+      "end": "20190228",
+      "settings": {
+        "skipChance": 0.9,
+        "weekendSkipChance": 1,
+        "range": {
+          "normal": {
+            "min": 1,
+            "max": 3
+          },
+          "weekend": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      }
+    }
+  ]
+}
