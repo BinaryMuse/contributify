@@ -1,8 +1,7 @@
 {
   "name": "contributify",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.1",
+  "description": "Generate a repository with commits based on a configuration file",
   "bin": "./bin/contributify",
   "scripts": {
     "test": "mocha --require ts-node/register --extension ts"
@@ -10,7 +9,6 @@
   "keywords": [],
   "author": "Michelle Tilley <michelle@michelletilley.net>",
   "license": "MIT",
-  "private": true,
   "dependencies": {
     "@types/date-fns": "^2.6.0",
     "@types/node": "^14.14.20",
