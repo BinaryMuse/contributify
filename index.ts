@@ -6,9 +6,9 @@ import { ConfigData } from './src/config'
 import Repo from './src/repo'
 
 export async function go () {
-  // const targetDir = process.argv[2]
-  // await contributify(targetDir)
-  // console.log('\nDone')
+  const targetDir = process.argv[2]
+  await contributify(targetDir)
+  console.log('\nDone')
 }
 
 async function contributify (targetDir: string) {

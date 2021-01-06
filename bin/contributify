@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env yarn node
 
 require('ts-node/register')
 require('../src/entry.ts').start(process.argv)

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "bin": "./bin/contributify",
   "scripts": {
     "test": "mocha --require ts-node/register --extension ts"
   },
@@ -11,16 +12,21 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@types/node": "^13.1.8",
+    "@types/node": "^13.5.0",
     "@types/nodegit": "^0.26.1",
     "@types/yargs": "^15.0.1",
+    "@types/yup": "^0.26.27",
+    "@yarnpkg/pnpify": "^2.0.0-rc.16",
+    "chalk": "^3.0.0",
+    "clipanion": "^2.1.6",
     "deepmerge": "^3.2.0",
     "moment": "^2.24.0",
     "nodegit": "^0.26.4",
     "toml": "^3.0.0",
     "ts-node": "^8.6.2",
     "typescript": "^3.7.5",
-    "yargs": "^15.1.0"
+    "yargs": "^15.1.0",
+    "yup": "^0.28.0"
   },
   "devDependencies": {
     "@types/chai": "^4.2.7",
