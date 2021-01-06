@@ -1,10 +1,10 @@
-import { Moment } from 'moment'
+import { format, getUnixTime } from 'date-fns'
 import { Repository, Signature, Oid } from 'nodegit'
 import fs from 'fs'
 import readline from 'readline'
 import { ConfigData, getSettingsForDay } from './config'
 
-function random (min: number, max: number) {
+function random(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min
 }
 
@@ -14,7 +14,7 @@ export default class Repo {
   private tree: Oid
   private nextParents: Array<Oid>
 
-  static async create (targetDir: string, config: ConfigData): Promise<Repo> {
+  static async create(targetDir: string, config: ConfigData): Promise<Repo> {
     if (fs.existsSync(targetDir)) {
       throw new Error(`Fatal: directory '${targetDir}' already exists`)
     }
@@ -26,7 +26,7 @@ export default class Repo {
     return new this(config, repo, tree)
   }
 
-  private constructor (config: ConfigData, repo: Repository, tree: Oid) {
+  private constructor(config: ConfigData, repo: Repository, tree: Oid) {
     this.config = config
 
     this.repo = repo
@@ -34,31 +34,32 @@ export default class Repo {
     this.nextParents = []
   }
 
-  async writeCommits (day: Moment) {
+  async writeCommits(day: Date) {
     const settings = getSettingsForDay(this.config, day)
     const { author, tzOffset, range, skipChance, weekendSkipChance } = settings
 
     let numCommits = random(range.normal.min, range.normal.max)
     let skip = false
-    if (day.day() === 0 || day.day() === 6) {
+    if (day.getDay() === 0 || day.getDay() === 6) {
       numCommits = random(range.weekend.min, range.weekend.max)
-      skip = Math.random() < weekendSkipChance
+      let actualWeekendSkipChance = weekendSkipChance !== undefined ? weekendSkipChance : skipChance!
+      skip = Math.random() < actualWeekendSkipChance
     } else {
-      skip = Math.random() < skipChance
+      skip = Math.random() < skipChance!
     }
 
     readline.clearLine(process.stdout, 0)
     readline.cursorTo(process.stdout, 0)
     if (skip) {
-      process.stdout.write(`Skipping commits for ${day.format('YYYY MM DD')} ...`)
+      process.stdout.write(`Skipping commits for ${format(day, 'yyyy MM dd')} ...`)
       return
     } else {
-      process.stdout.write(`Writing ${numCommits} commits for ${day.format('YYYY MM DD')} ...`)
+      process.stdout.write(`Writing ${numCommits} commits for ${format(day, 'yyyy MM dd')} ...`)
     }
 
     for (let i = 0; i < numCommits; i++) {
-      const signature = Signature.create(author.name, author.email, day.unix(), tzOffset * 60)
-      const commit = await this.repo.createCommit('HEAD', signature, signature, `Commit ${i} for ${day.format('YYYYMMDD')}`, this.tree, this.nextParents)
+      const signature = Signature.create(author.name, author.email, getUnixTime(day), tzOffset * 60)
+      const commit = await this.repo.createCommit('HEAD', signature, signature, `Commit ${i} for ${format(day, 'yyyyMMdd')}`, this.tree, this.nextParents)
       this.nextParents = [commit]
     }
   }

@@ -1,4 +1,6 @@
 [settings]
+start = "20210101"
+end = "20211231"
 tzOffset = -7
 skipChance = 0.1
 weekendSkipChance = 0.6
@@ -15,25 +17,10 @@ max = 50
 min = 1
 max = 10
 
+# Less computering over Christmas
 [[overrides]]
-  start = "20190220"
-  end = "20190228"
-
-  [overrides.settings]
-  skipChance = 0.9
-  weekendSkipChance = 1
-
-  [overrides.settings.range.normal]
-  min = 1
-  max = 3
-
-  [overrides.settings.range.weekend]
-  min = 1
-  max = 3
-
-[[overrides]]
-  start = "20191220"
-  end = "20191231"
+  start = "20211220"
+  end = "20211231"
 
   [overrides.settings.range.normal]
   min = 1
@@ -48,16 +35,8 @@ max = 10
   weekendSkipChance = 0.99
 
 [[overrides]]
-  start = "20181216"
-  end = "20190106"
-
-  [overrides.settings]
-  skipChance = 1
-  weekendSkipChance = 1
-
-[[overrides]]
-  start = "20190113"
-  end = "20190120"
+  start = "20211225"
+  end = "20211225"
 
   [overrides.settings]
   skipChance = 1
