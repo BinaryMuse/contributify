@@ -79,4 +79,3 @@ max = 10
   weekendSkipChance = 1
 ```
 
-`./bin/contributify create
